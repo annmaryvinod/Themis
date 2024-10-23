@@ -1,0 +1,15 @@
+# Python
+*.pyc
+__pycache__/
+
+
+# Poetry
+__pypackages__/
+
+# Environment Variables
+configs/.env.local
+configs/.env.production
+configs/.env.staging
+
+
+dist/
