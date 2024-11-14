@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 
-from app.routers import item
+from app.routers import embedding, item
 
 app = FastAPI(
     title="LLM Project 1 API",
@@ -9,6 +9,7 @@ app = FastAPI(
 )
 
 app.include_router(item.router)
+app.include_router(embedding.router)
 
 
 @app.get("/health", tags=["Health"])

@@ -11,6 +11,12 @@ class BaseConfig(BaseModel):
     SECRET_KEY: str
     ALLOWED_HOSTS: List[AnyHttpUrl] = Field(default_factory=list)
 
+    DB_NAME: str
+    DB_USER: str
+    DB_PASSWORD: str
+
+    HUGGINGFACEHUB_API_TOKEN: str
+
     model_config = {
         "env_prefix": "",  # No prefix by default
     }
