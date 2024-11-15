@@ -1,8 +1,10 @@
-from PyPDF2 import PdfReader
-import requests
 from io import BytesIO
 
-def extractTextFromPDF(pdf_url: str) -> str:
+import requests
+from PyPDF2 import PdfReader
+
+
+def extract_text_from_pdf(pdf_url: str) -> str:
     text = ""
     response = requests.get(pdf_url)
     response.raise_for_status()
