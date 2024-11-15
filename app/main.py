@@ -1,14 +1,21 @@
+import os
+
 from fastapi import FastAPI
 
-from app.routers import item
+from app.config.settings import settings
+from app.routers import embedding
+
+# Set the environment variable
+os.environ["HUGGINGFACEHUB_API_TOKEN"] = settings.HUGGINGFACEHUB_API_TOKEN
+
 
 app = FastAPI(
-    title="LLM Project 1 API",
-    description="An API for managing items.",
+    title="themis-api-service",
+    description="LLM API service for themis",
     version="1.0.0",
 )
 
-app.include_router(item.router)
+app.include_router(embedding.router)
 
 
 @app.get("/health", tags=["Health"])
