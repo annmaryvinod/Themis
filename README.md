@@ -88,11 +88,16 @@ Edit the `configs/.env.local` file and provide the necessary configuration, incl
 
 ### Initialize the Database
 
-Ensure your PostgreSQL database is running and accessible. If you need to create the database and tables, you can use the following SQL commands:
+Ensure your PostgreSQL database is running. To set up the database schema, apply migrations by running:
 
-```sql
-CREATE DATABASE themis_db;
--- Create necessary tables as per your application's requirements
+```bash
+make migrate-up
+```
+
+To rollback migrations, use:
+
+```bash
+make migrate-down
 ```
 
 ### Development Server
