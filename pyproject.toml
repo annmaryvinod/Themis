@@ -10,6 +10,7 @@ packages = [
 
 [tool.poetry.scripts]
 dev = "app.scripts.dev:main"
+migrate = "app.scripts.migrate:main"
 
 [tool.poetry.dependencies]
 python = "^3.12"

@@ -11,18 +11,18 @@ class Embedding:
 
     @staticmethod
     def store_embeddings(
-        document_id: str, texts: List[str], embeddings: List[List[float]]
+        document_id: str, text_chunks: List[str], embeddings: List[List[float]]
     ):
         conn = get_connection()
         try:
             with conn.cursor() as cur:
-                for text, embedding in zip(texts, embeddings):
+                for chunk, embedding in zip(text_chunks, embeddings):
                     cur.execute(
                         """
-                        INSERT INTO embeddings (document_id, text, embedding)
+                        INSERT INTO embeddings (document_id, chunk, embedding)
                         VALUES (%s, %s, %s)
                         """,
-                        (document_id, text, embedding),
+                        (document_id, chunk, embedding),
                     )
             conn.commit()
         except Exception as e:

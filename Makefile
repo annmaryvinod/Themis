@@ -61,3 +61,15 @@ lint:
 docs:
 	@echo "Building documentation..."
 	poetry run mkdocs build
+
+# Migrate database up
+.PHONY: migrate-up
+migrate-up:
+	@echo "Applying migrations..."
+	poetry run migrate up
+
+# Migrate database down
+.PHONY: migrate-down
+migrate-down:
+	@echo "Rolling back migrations..."
+	poetry run migrate down
