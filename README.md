@@ -28,10 +28,6 @@ An Agentic AI system for legal assistance
   - [Coding Guidelines](#coding-guidelines)
 - [License](#license)
 
-## Introduction
-
-**Themis** is a FastAPI application designed to assist in legal tasks by leveraging language models to process document embeddings. It provides APIs for creating embeddings from legal documents, storing them in a database, and facilitating efficient retrieval and analysis.
-
 ## Features
 
 - RESTful API built with FastAPI
@@ -56,7 +52,7 @@ An Agentic AI system for legal assistance
 ### Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/themis.git
+git clone git@github.com:annmaryvinod/Themis.git
 cd themis
 ```
 
@@ -73,6 +69,16 @@ Then, install the project dependencies:
 ```bash
 poetry install
 ```
+
+### Activate the Virtual Environment
+
+After installing the dependencies, activate the virtual environment by entering the Poetry shell:
+
+```bash
+poetry shell
+```
+
+This will spawn a new shell within the virtual environment, where you can run the application and manage dependencies.
 
 ## Running the Application
 
@@ -110,7 +116,7 @@ make dev
 
 This will start the FastAPI application on `http://127.0.0.1:8000`.
 
-Alternatively, you can run the development server directly using:
+Alternatively, if you haven't activated the Poetry shell, you can run the development server directly using:
 
 ```bash
 poetry run dev
@@ -137,11 +143,7 @@ themis
 ├── Makefile
 ├── app
 │   ├── scripts
-│   │   └── dev.py
 │   ├── config
-│   │   ├── base.py
-│   │   ├── logging.py
-│   │   └── settings.py
 │   ├── main.py
 │   ├── routers
 │   ├── utils
