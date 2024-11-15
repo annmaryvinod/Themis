@@ -163,14 +163,9 @@ themis
 
 - **`app/`**: Main application directory containing the core of the FastAPI app.
   - **`scripts/`**: Scripts related to running the application.
-    - **`dev.py`**: Script to run the development server.
   - **`config/`**: Application configuration files.
-    - **`base.py`**: Base configuration model.
-    - **`logging.py`**: Logging configuration.
-    - **`settings.py`**: Pydantic settings configuration using environment variables.
   - **`main.py`**: Entry point of the FastAPI application. Includes the API router and health check endpoint.
   - **`routers/`**: Contains API route definitions using FastAPI's `APIRouter`.
-    - **`embedding.py`**: Routes related to embedding operations.
   - **`utils/`**: Utility modules for tasks like text extraction and splitting.
   - **`models/`**: Data models, typically database models or Pydantic models representing the data.
   - **`services/`**: Business logic layer, contains code that interacts with models and performs operations.
