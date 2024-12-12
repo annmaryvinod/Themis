@@ -1,4 +1,5 @@
 from sentence_transformers import SentenceTransformer
+from typing import List
 import logging
 import numpy as np
 from psycopg2 import sql
@@ -6,10 +7,10 @@ from psycopg2.extras import RealDictCursor
 from app.store.database import get_connection, put_connection
 
 logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
+logger = logging.getLogger(_name_)
 
 class RetrieverModel:
-    def __init__(self):
+    def _init_(self):
         
         self.model = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')
 
@@ -26,7 +27,7 @@ class RetrieverModel:
     def query_database(self, query_embedding, top_k=5):
         try:
             query = """
-            SELECT document_id, chunk, 1 - (embedding <=> %s) AS similarity
+            SELECT document_id, chunk, 1 - (embedding <=> %s::VECTOR) AS similarity
             FROM embeddings
             ORDER BY similarity DESC
             LIMIT %s
@@ -43,7 +44,7 @@ class RetrieverModel:
             logger.error(f"Error querying database: {e}")
             raise
 
-    def store_query_history(self, user_id: str, query: str, embedding: list):
+    def store_query_history(self, user_id: str, query: str, embedding: List[float]):
         try:
             query_history_query = """
             INSERT INTO query_history (user_id, query, embedding)
