@@ -1,11 +1,9 @@
-
 from typing import Optional, List, Dict
-from pydantic import BaseModel, HttpUrl, model_validator
-
+from pydantic import BaseModel, model_validator
 
 class WebScraperRequestBody(BaseModel):
     title: str
-    document_url: Optional[HttpUrl] = None
+    document_url: str = None
 
     @model_validator(mode="after")
     def validate_document_url(self):
@@ -13,11 +11,10 @@ class WebScraperRequestBody(BaseModel):
             raise ValueError("The document_url must be provided.")
         return self
 
-
 class WebScraperSuccessResponse(BaseModel):
     status: str = "Success"
     message: str
-    document_content: str
+    document_content: str  # Ensure this is defined as required
     extracted_metadata: Optional[List[Dict[str, str]]] = None
 
 

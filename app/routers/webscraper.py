@@ -21,7 +21,8 @@ def scrape_document(
         return WebScraperSuccessResponse(
             status="Success",
             message="Document content successfully scraped and stored.",
-            document_id=document_id,
+            document_content=document_id.document_content, 
+            extracted_metadata=document_id.extracted_metadata,
         )
     except ValueError as ve:
         logger.error(f"Validation error: {ve}")
@@ -43,10 +44,8 @@ def get_scraped_document(
     document_id: str,
     service: WebScraperService = Depends(get_webscraper_service),
 ):
-
     try:
         content_data = service.retrieve_scraped_content(document_id)
-
         return WebScraperSuccessResponse(
             status="Success",
             message="Document content successfully retrieved.",

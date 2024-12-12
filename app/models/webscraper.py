@@ -57,4 +57,3 @@ class WebScrapedContent:
         finally:
             if conn:
                 put_connection(conn)
-

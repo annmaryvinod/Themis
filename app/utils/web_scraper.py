@@ -5,7 +5,6 @@ from typing import Dict
 
 logger = logging.getLogger(__name__)
 
-
 def scrape_web_content(url: str) -> Dict[str, str]:
     try:
         logger.info(f"Attempting to scrape content from URL: {url}")
