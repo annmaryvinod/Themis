@@ -1,5 +1,4 @@
-from transformers import AutoTokenizer, AutoModelForCausalLM
-import torch
+from sentence_transformers import SentenceTransformer
 import logging
 import numpy as np
 from psycopg2 import sql
@@ -11,18 +10,13 @@ logger = logging.getLogger(__name__)
 
 class RetrieverModel:
     def __init__(self):
-        model_name = "EleutherAI/gpt-neo-1.3B"
-        self.tokenizer = AutoTokenizer.from_pretrained(model_name)
-        self.model = AutoModelForCausalLM.from_pretrained(model_name)
+        
+        self.model = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')
 
     def get_embedding(self, text: str):
         try:
-            tokens = self.tokenizer(
-                text, return_tensors="pt", padding=True, truncation=True
-            )
-            with torch.no_grad():
-                outputs = self.model(**tokens)
-            embedding = outputs.last_hidden_state.mean(dim=1).squeeze().numpy()
+            
+            embedding = self.model.encode(text)
             logger.info(f"Generated embedding for text: {text}")
             return embedding
         except Exception as e:
