@@ -4,7 +4,7 @@ from fastapi import FastAPI
 
 from app.config.settings import settings
 from app.routers import embedding
-
+from app.routers import webscraper
 # Set the environment variable
 os.environ["HUGGINGFACEHUB_API_TOKEN"] = settings.HUGGINGFACEHUB_API_TOKEN
 
@@ -16,6 +16,7 @@ app = FastAPI(
 )
 
 app.include_router(embedding.router)
+app.include_router(webscraper.router)
 
 
 @app.get("/health", tags=["Health"])
